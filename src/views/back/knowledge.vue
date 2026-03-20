@@ -2,7 +2,7 @@
   <div>
     <PageHead title="知识文章">
       <template  #buttons>
-        <el-button type="primary">新增</el-button>
+        <el-button @click="dialogVisivle=true" type="primary">新增</el-button>
       </template>
     </PageHead>
     <TableSelect :fromItem="fromItem"  @search="handleSearch"></TableSelect>
@@ -42,6 +42,7 @@
     layout="prev, pager, next"
     :total="pagination.total"
      @current-change="handleChange" />
+     <ArticleDialog :categoryList="categoryList" v-model:modelValue="dialogVisivle"/>
   </div>
   
 </template>
@@ -50,6 +51,7 @@
 import { ref,onMounted,reactive } from 'vue';
 import PageHead from '../../components/PageHead.vue';
 import TableSelect from '../../components/TableSelect.vue';
+import ArticleDialog from '../../components/ArticleDialog.vue';
 import {categoryTree,articlePage} from '../../api/admin'
 // 分类列表
 const categoryList=ref([])
@@ -63,6 +65,8 @@ onMounted(async()=>{
     }
   })
   fromItem.value[1].Option=categoryList.value
+  console.log(categoryList.value);
+  
   handleSearch()
 })
 
@@ -85,6 +89,8 @@ const handleChange=(page)=>{
   pagination.currentPage=page
   handleSearch()
 }
+// 文章详情是否打开
+const dialogVisivle=ref(false)
 
 const tableData=ref([])
 

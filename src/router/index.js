@@ -42,6 +42,23 @@ const backendRoutes=[
         }
       }
     ]
+  },
+  // login
+  {
+    path:'/auth',
+    component:()=>import('../components/AuthLayout.vue'),
+    children:[
+      {
+        path:'login',
+        component:()=>import('../views/auth/login.vue'),
+        meta:{title:'登录'}
+      },
+      {
+        path:'register',
+        component:()=>import('../views/auth/register.vue'),
+        meta:{title:'注册'}
+      }
+    ]
   }
 ]
 

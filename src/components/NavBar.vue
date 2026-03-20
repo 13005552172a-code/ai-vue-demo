@@ -9,7 +9,7 @@
 
     <div class="flex-box">
       <!-- 头像 -->
-      <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"/>
+      <el-avatar style="width: 30px;height: 30px;" :src=imgUrl  alt="头像"/>
     <el-dropdown>
     <span class="el-dropdown-link">
       admin
@@ -33,7 +33,7 @@
 import { ArrowDown } from '@element-plus/icons-vue'
 import {useAdminStore} from '../stores/admin'
 
-
+const imgUrl=new URL('../assets/users.png',import.meta.url).href
 
 const handlecollect=()=>{
   useAdminStore().toggleCollect()

@@ -24,10 +24,10 @@ service.interceptors.response.use(function (response) {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
     const { data,config } = response;
-    if(data.code==='200'){
+    if(data.code==='200' || data.code === 200){
       return data.data;
     }else{
-      if(data.code==='-1'){
+      if(data.code==='-1' || data.code === -1){
         if(!config.url.includes('login')){
           ElMessage.error('登录失效，请重新登录');
           // 清除token

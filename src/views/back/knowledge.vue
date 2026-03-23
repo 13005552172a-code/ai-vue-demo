@@ -42,7 +42,7 @@
     layout="prev, pager, next"
     :total="pagination.total"
      @current-change="handleChange" />
-     <!-- 这个就是弹窗了 -->
+     <!-- 这个就是弹窗 -->
      <ArticleDialog
       :categoryList="categoryList" :editFormData="editFormData" v-model:modelValue="dialogVisivle" @success="handlesuccess"/>
   </div>

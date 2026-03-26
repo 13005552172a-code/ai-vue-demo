@@ -55,9 +55,9 @@
     <div v-html="formData.content"></div>
   </div>
   <template #footer>
-    <el-button @click="btnRef=!btnRef" >{{ btnRef? '隐藏预览' : '显示预览' }}</el-button>
+    <el-button @click="btnRef=!btnRef" >{{ btnRef? '隐藏预览' : '显示览' }}</el-button>
     <el-button @click="handleClose">取消</el-button>
-    <el-button @click="handleSubmit" :loading="loading" type="primary" >{{isEdie? '编辑文章': '新建文章'}}</el-button>
+    <el-button @click="handleSubmit" :loading="loading" type="primary" >{{isEdie? '编辑预文章': '新建文章'}}</el-button>
   </template>
   </el-dialog>
 </template>
@@ -196,7 +196,6 @@ watch(()=>props.editFormData,(newVal)=>{
     imgUrl.value=baseURL+newVal.coverImage
   }
   })
-  
 })
 
 

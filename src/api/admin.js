@@ -4,6 +4,7 @@ export function login(data){
   return service.post('/user/login',data)
 }
 
+// 知识文章页面
 export function categoryTree(){
   return service.get(`/knowledge/category/tree`)
 }
@@ -45,4 +46,28 @@ export function deleteArticle(id){
   return service.delete(`/knowledge/article/${id}`)
 }
 
+// 咨询页面
+export function psychologicalSessions(params){
+  return service.get(`/psychological-chat/sessions`,{params})
+}
 
+export function psychologicalchat(sessionId){
+  return service.get(`/psychological-chat/sessions/${sessionId}/messages`)
+}
+
+// 情绪页面
+export function emotionDiary(params){
+  return service.get(`/emotion-diary/admin/page`,{params})
+}
+export function deleteEmotion(id){
+  return service.delete(`/emotion-diary/admin/${id}`)
+}
+
+// 可视化页面
+export function visualPage(){
+  return service.get(`/data-analytics/overview`)
+}
+// 退出登录
+export function logout(){
+  return service.post('/user/logout')
+}

@@ -41,7 +41,7 @@
     :page-size="pagination.size"
     layout="prev, pager, next"
     :total="pagination.total"
-     @current-change="handleChange" />
+    @current-change="handleChange" />
      <!-- 这个就是弹窗 -->
      <ArticleDialog
       :categoryList="categoryList" :editFormData="editFormData" v-model:modelValue="dialogVisivle" @success="handlesuccess"/>
@@ -65,12 +65,9 @@ const handleEdit=(row)=>{
   }else{
     knowledgeArticle(row.id).then(res=>{
     editFormData.value=res
-    console.log(editFormData);
     dialogVisivle.value=true
   })
   }
-  
-  
 }
 // 发布
 const handlePush=(row)=>{
@@ -173,8 +170,6 @@ const handleSearch=async(FormData)=>{
   const {records,total}=await articlePage(params)
   tableData.value=records
   pagination.total=total
-  // console.log(records);
-  
 
 }
 </script>

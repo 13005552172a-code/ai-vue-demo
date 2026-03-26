@@ -62,7 +62,6 @@ const fromData=reactive({})
 const emit=defineEmits([`search`])
 const handleSearch=()=>{
   emit(`search`,fromData)
-  
 }
 const fromDatarule=ref()
 // 重置表单

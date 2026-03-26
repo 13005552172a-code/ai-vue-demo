@@ -3,7 +3,7 @@ import { createWebHistory, createRouter } from 'vue-router'
 const backendRoutes=[
   {
     path:'/',
-    redirect: '/back'
+    redirect: '/back/dashboards'
   },
   {
     path:'/back',
@@ -67,7 +67,27 @@ const router = createRouter({
   routes: backendRoutes
 })
 
-// router.beforeEach((to, from, next) => {
-  
-// })
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token')
+  if(token){
+    const userInfo=JSON.parse(localStorage.getItem('userInfo'))
+    if(userInfo.userType===2){
+      if(to.path.startsWith('/back')){
+        next()
+      }else{
+        next('/back/dashboards')
+      }
+    }
+    else if(userInfo.userType===1){
+      
+    }
+  }else{
+    if(to.path.startsWith('/back')){
+      // 如果是返回后台页面，那么退出到登录页面
+      next('/auth/login')
+    }else{
+      next()
+    }
+  }
+})
 export default router

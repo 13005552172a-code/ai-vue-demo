@@ -4,7 +4,7 @@
       <el-button @click="handlecollect" >
         <el-icon ><Operation /></el-icon>
       </el-button>
-       <p class="page-title">页面标题</p>
+       <p class="page-title">{{route.meta.title}}</p>
     </div>
 
     <div class="flex-box">
@@ -32,6 +32,11 @@
 <script setup>
 import { ArrowDown } from '@element-plus/icons-vue'
 import {useAdminStore} from '../stores/admin'
+import { useRouter,useRoute } from 'vue-router'
+import { ElMessageBox,ElMessage } from 'element-plus'
+import { logout } from '../api/admin'
+const router=useRouter()
+const route=useRoute()
 
 const imgUrl=new URL('../assets/users.png',import.meta.url).href
 
@@ -39,7 +44,22 @@ const handlecollect=()=>{
   useAdminStore().toggleCollect()
 }
 const handleback = () => {
-  console.log('退出成功');
+  ElMessageBox.confirm(
+    `确定退出登录吗`,
+    {
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
+      type: 'warning',
+    }
+  ).then(()=>{
+    logout().then(res=>{
+      localStorage.removeItem('token')
+      localStorage.removeItem('userInfo')
+      router.push('/auth/login')
+      ElMessage.success('退出成功')
+    })
+  })
+  
 }
 </script>
 

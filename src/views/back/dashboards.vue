@@ -62,6 +62,7 @@
           </el-card>
         </el-col>
       </el-row>
+
       <el-row style="margin-top: 20px;" :gutter="20">
         <el-col :span="12">
           <el-card style="width: 100%;">
@@ -104,6 +105,7 @@
           </el-card>
         </el-col>
       </el-row>
+      
       <el-row style="margin-top: 20px;">
           <el-card style="width: 100%;">
             <template #header>

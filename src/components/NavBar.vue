@@ -10,7 +10,7 @@
     <div class="flex-box">
       <!-- 头像 -->
       <el-avatar style="width: 30px;height: 30px;" :src=imgUrl  alt="头像"/>
-    <el-dropdown>
+    <el-dropdown  style="cursor: pointer;">
     <span class="el-dropdown-link">
       admin
       <el-icon class="el-icon--right">
@@ -19,7 +19,7 @@
     </span>
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item @click="handleback">退出登录</el-dropdown-item>
+        <el-dropdown-item  @click="handleback">退出登录</el-dropdown-item>
 
       </el-dropdown-menu>
     </template>

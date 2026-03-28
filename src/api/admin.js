@@ -71,3 +71,31 @@ export function visualPage(){
 export function logout(){
   return service.post('/user/logout')
 }
+
+// 注册接口
+export function register(data){
+  return service.post(`/user/add`,data)
+}
+
+// 用户之ai助手
+// 创建新的会话接口
+export function createstartSession(data){
+  return service.post(`/psychological-chat/session/start`,data)
+}
+
+// 分页查询咨询会话
+export function  getSessionList(params){
+  return service.get('/psychological-chat/sessions',{params})
+}
+// 删除咨询会话
+export function deleteSession(sessionId){
+  return service.delete(`/psychological-chat/sessions/${sessionId}`)
+}
+// 获取会话消息列表
+export function getMessageList(sessionId){
+  return service.get(`/psychological-chat/sessions/${sessionId}/messages`)
+}
+// 流式对话
+export function streamMessage(data){
+  return service.post(`/api/psychological-chat/stream`,data)
+}

@@ -135,7 +135,7 @@ const isShow=ref(false)
 
 const formItem=ref([
   {comp:'input',prop:'userId',label:'用户ID',placeholder:'请输入用户ID'},
-  {comp:'select',prop:'moodScreRange',label:'情绪评分',placeholder:'请选择评分范围',Option:
+  {comp:'select',prop:'moodScore',label:'情绪评分',placeholder:'请选择评分范围',Option:
   [
     {label:'低分(1-3)',value:'1-3'},
     {label:'中等(4-6)',value:'4-6'},
@@ -158,7 +158,6 @@ const handleSearch=()=>{
     const {records,total}=res;
     tableData.value=records;
     pagination.total=total;
-    // console.log(res);
   })
 }
 // 获取数据
@@ -192,7 +191,7 @@ const deleteviewSessionDtain=(row)=>{
   })
 }
 
-const showDetail=ref(false)
+
 onMounted(()=>{
   handleSearch()
 })

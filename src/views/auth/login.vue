@@ -3,7 +3,7 @@
     <div class="title">
       <div class="back-home">
         <el-icon><Back/></el-icon>
-        <span>返回首页</span>
+        <span @click="router.push('/')" style="cursor: pointer;">返回首页</span>
       </div>
       <div class="title-text">
         <h2>登录您的账户</h2>
@@ -28,7 +28,7 @@
       <div class="footer">
         <p>没有账号?<router-link to="/auth/register">立即注册</router-link></p>
       </div>
-      .
+      
     </div>
   </div>
 </template>
@@ -36,8 +36,10 @@
 <script setup> 
 
 import { ref, } from 'vue'
+
 import { login } from '../../api/admin'
 import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 const router=useRouter()
 
 const formData = ref({
@@ -64,7 +66,12 @@ const handleLogin=async(formEL)=>{
       localStorage.setItem('userInfo',JSON.stringify(res.userInfo))//缓存只能以字符串的形式存储
       // 根据用户角色判断跳转页面
     if(res.userInfo.userType===2){
+      ElMessage.success(`登录成功`)
       router.push(`/back/dashboards`)
+    }
+    else{
+      ElMessage.success(`登录成功`)
+      router.push(`/`)
     }
      })
     
@@ -91,6 +98,7 @@ const handleLogin=async(formEL)=>{
       p{
         font-size:18px;
         color: #6b7280;
+        
       }
     }
   }

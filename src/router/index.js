@@ -1,9 +1,51 @@
 import { createWebHistory, createRouter } from 'vue-router'
 
-const backendRoutes=[
+// 前台路由
+const frontRoutes=[
   {
     path:'/',
-    redirect: '/back/dashboards'
+    component:()=>import('../components/FrontendLayout.vue'),
+    meta:{
+      title:'首页',
+    },
+    children:[
+      {
+        path:'',
+        component:()=>import('../views/User/home.vue'),
+        meta:{
+          title:'我的主页',
+        }
+      },
+      {
+        path:'consulation',
+        component:()=>import('../views/User/consulation.vue'),
+        meta:{
+          title:'AI咨询'
+        }
+      },
+      {
+        path:'emotionDiarys',
+        component:()=>import('../views/User/emotionDiarys.vue'),
+        meta:{
+          title:'情绪日志'
+        }
+      },
+      {
+        path:'frontendknowledge',
+        component:()=>import('../views/User/frontendknowledge.vue'),
+        meta:{
+          title:'前端知识'
+        }
+      }
+    ]
+  }
+]
+// 后台路由
+const backendRoutes=
+[
+  {
+    path:'/back',
+    redirect: '/back/dashboards',
   },
   {
     path:'/back',
@@ -64,7 +106,7 @@ const backendRoutes=[
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: backendRoutes
+  routes: [...backendRoutes,...frontRoutes]
 })
 
 router.beforeEach((to, from, next) => {
@@ -79,7 +121,12 @@ router.beforeEach((to, from, next) => {
       }
     }
     else if(userInfo.userType===1){
-      
+      // 只能访问前台的路由
+       if(to.path.startsWith('/back')||to.path.startsWith('/auth')){
+        next('/')
+       }else{
+        next()
+       }
     }
   }else{
     if(to.path.startsWith('/back')){

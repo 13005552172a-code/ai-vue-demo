@@ -99,3 +99,7 @@ export function getMessageList(sessionId){
 export function streamMessage(data){
   return service.post(`/api/psychological-chat/stream`,data)
 }
+// 获取会话情绪分析结果
+export function getEmotionResult(sessionId){
+  return service.get(`/psychological-chat/session/${sessionId}/emotion`)
+}

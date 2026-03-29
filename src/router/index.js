@@ -36,6 +36,10 @@ const frontRoutes=[
         meta:{
           title:'前端知识'
         }
+      },
+      {
+        path:'frontendknowledge/article/:id',
+        component:()=>import(`../views/User/articleDeatil.vue`)
       }
     ]
   }

@@ -103,3 +103,19 @@ export function streamMessage(data){
 export function getEmotionResult(sessionId){
   return service.get(`/psychological-chat/session/${sessionId}/emotion`)
 }
+
+// 情绪页面
+// 创建或更新情绪日记
+export function createorUpdateemotionDiary(data){
+  return service.post(`/emotion-diary`,data)
+}
+
+// 知识管理页面
+export function knowledgeList(params){
+  return service.get('/knowledge/article/page',{params })
+}
+
+// 知识文章详情
+export function knowledgeDetail(id){
+  return service.get(`/knowledge/article/${id}`)
+}

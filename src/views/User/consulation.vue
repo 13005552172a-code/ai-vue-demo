@@ -165,7 +165,6 @@
           </div>
         </div>
         <el-button :disabled="!inputMessage.trim() ||inputMessage.length>500"  @click="sendMessage" type="primary" class="send-btn"><el-icon><Promotion/></el-icon></el-button>
-
       </div>
     </div>
   </div>
@@ -235,6 +234,20 @@ const createNewSession=()=>{
     sessionTitle:'新会话',
   }
   currentSesstion.value=newSession
+  messages.value = []
+
+  currentEmotion.value = {
+    primaryEmotion: '中性',
+    emotionScore: 99,
+    isNegative: false,
+    riskLevel: 0,
+    suggestion: '请保持情绪',
+    improvementSuggestions: ['继续保持好心情', '可以尝试分享一下你的快乐给朋友哦', '保持积极的心态，享受美好的一天！'],
+    riskDescription: '当前情绪状态良好，无需特别关注',
+    icon: '🚨'
+  }
+
+  ElMessage.success('已创建新会话')
 }
 
 
@@ -248,7 +261,6 @@ const sendMessage=()=>{
   
   const message=inputMessage.value.trim()
   inputMessage.value=''
-//   isSending.value=true
 
   if(currentSesstion.value.sessionStatus==='TEMP'){
     startNewSession(message)
@@ -305,7 +317,7 @@ const startNewSession=(message)=>{
   })
 }
 
-// 流失对话
+// 流式对话
 const startAIResponse=(sessionId,userMessage)=>{
     if(isSending.value){
         ElMessage.error('消息发送中，请稍后再试')
@@ -404,6 +416,7 @@ const handleDelete=(id)=>{
 // 初始化对话消息
 const messages=ref([])
 const handleGet=(session)=>{
+
     getMessageList(session.id).then(res=>{
         messages.value=res
         // console.log(res);

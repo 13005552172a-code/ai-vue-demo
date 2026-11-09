@@ -3,7 +3,7 @@ import { ElMessage } from 'element-plus';
 import router from '../router/index'
 const service = axios.create({
   baseURL: '/api',//请求前缀
-  timeout: 1000,//请求的超时时间
+  timeout: 10000,//请求的超时时间（外网穿透有额外延迟，1s 过短）
 });
 
 // 添加请求拦截器

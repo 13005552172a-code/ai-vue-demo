@@ -62,6 +62,7 @@ import { knowledgeList } from '../../api/admin';
 import { Avatar } from '@element-plus/icons-vue';
 import { dayjs } from 'element-plus';
 import { useRouter } from 'vue-router';
+import { baseURL } from '../../config';
 const router = useRouter()
 // 跳转到详情页面
 const gotoArticle=(id)=>{
@@ -76,7 +77,7 @@ const handleChange=(page)=>{
 
 // 获得封面图片
 const getiamge = (url) => {
-  return url? `http://localhost:5173/`+url :" https://file.itndedu.com/psychology_ai.png"
+  return url? `${baseURL}${url}` : "https://file.itndedu.com/psychology_ai.png"
 }
 
 
